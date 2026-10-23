@@ -1,0 +1,24 @@
+{
+  "name": "muse-ai-stylist",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Muse by Shadma - an AI personal stylist for wardrobe, makeup and jewelry",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "images": "node scripts/fetch-images.mjs",
+    "generate": "node scripts/generate-images.mjs",
+    "test": "node scripts/test-stylist.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.5"
+  }
+}

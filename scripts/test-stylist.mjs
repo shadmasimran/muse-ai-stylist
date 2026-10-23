@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import { CATALOG, BY_ID, STARTER } from '../src/data/catalog.js';
+import { buildLooks, finishLook, dominantColor, weatherBucket, harmony } from '../src/lib/stylist.js';
+
+const closet = STARTER.map((id) => BY_ID[id]);
+const ctx = { occasion: 3, weather: 1.6, undertone: 'warm' };
+const looks = buildLooks(closet, ctx);
+assert.equal(looks.length, 3);
+assert.ok(looks.every((l) => l.pct > 0 && l.pct <= 100));
+assert.ok(looks[0].pct >= looks[1].pct && looks[1].pct >= looks[2].pct);
+const fin = finishLook(looks[0], { occasionIndex: 3, undertone: 'warm' }, BY_ID);
+assert.ok(fin.lipstick && fin.blush && fin.eyes && fin.jewelry);
+assert.equal(dominantColor([[200, 10, 10], [210, 12, 8], [10, 10, 200]], 2), '#cd0b09');
+assert.equal(weatherBucket(34, 0), 'Hot');
+assert.equal(weatherBucket(24, 0), 'Mild');
+assert.equal(weatherBucket(12, 0), 'Cool');
+assert.equal(weatherBucket(28, 2), 'Rainy');
+assert.ok(harmony('#FFFFFF', '#E58FA9')[0] > 0.8);
+assert.equal(new Set(CATALOG.map((p) => p.id)).size, CATALOG.length, 'catalog ids must be unique');
+console.log(`OK: ${CATALOG.length} catalog items, top look ${looks[0].pct}% (${looks[0].parts.map((p) => p.name).join(' + ')})`);
