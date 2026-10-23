@@ -4,4 +4,4 @@
 export const PINTEREST_BOARD = '';
 
 // Your GitHub repository (shown in the footer)
-export const GITHUB_URL = 'https://github.com/';
+      export const GITHUB_URL = 'https://github.com/shadmasimran/muse-ai-stylist';
